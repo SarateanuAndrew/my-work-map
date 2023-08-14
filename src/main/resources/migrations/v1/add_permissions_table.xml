@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet id="add_permissions_table" author="dev" failOnError="true">
+        <sql>
+            CREATE TABLE permissions (
+                id               BIGSERIAL       NOT NULL PRIMARY KEY,
+                name             VARCHAR(200)    NOT NULL
+            );
+
+            INSERT INTO permissions (name)
+            VALUES ('SUPERVISOR'),
+                   ('MANAGE_ROLE'),
+                   ('MANAGE_ROLE');
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet id="20191216153600_add_sign_in_attempts_table" author="dev" failOnError="true">
+        <sql>
+            CREATE TABLE sign_in_attempts
+            (
+                id            BIGSERIAL    NOT NULL PRIMARY KEY,
+                attempts      SMALLINT     NOT NULL,
+                admin_id      BIGINT       NULL,
+                invalid_login VARCHAR(200) NULL,
+                created_time  TIMESTAMP    NOT NULL DEFAULT NOW(),
+                updated_time  TIMESTAMP    NOT NULL DEFAULT NOW(),
+
+                CONSTRAINT fk_sign_in_attempts_admins_admin_id
+                    FOREIGN KEY (admin_id) REFERENCES admins (id),
+
+                CONSTRAINT sign_in_attempts_unique_admin_id UNIQUE (admin_id),
+                CONSTRAINT sign_in_attempts_unique_invalid_login UNIQUE (invalid_login)
+            );
+
+            CREATE TRIGGER sign_in_attempts_updated_time_on_change
+                BEFORE UPDATE
+                ON sign_in_attempts
+                FOR EACH ROW
+            EXECUTE PROCEDURE updated_time_on_change();
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet id="20220606128500_add_roles_update_permission" author="dev" failOnError="true">
+        <sql>
+
+            INSERT INTO permissions(name)
+            SELECT 'ROLE_UPDATE' WHERE NOT EXISTS (SELECT name FROM permissions WHERE name =
+            'ROLE_UPDATE');
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT r.id, p.id
+            FROM roles r,
+            permissions p
+            where r.name in ('ADMIN')
+            AND p.name in ('ROLE_UPDATE')
+            AND NOT EXISTS(Select *
+            from roles_permissions rp
+            where r.id = rp.role_id
+            AND p.id = rp.permission_id);
+
+            UPDATE permissions SET name ='ROLE_LIST' WHERE
+            permissions."name" = 'ADMINS_ROLES_LIST';
+            UPDATE permissions SET name ='ROLE_ADD' WHERE
+            permissions."name" = 'ADMINS_ROLES_ADD';
+            UPDATE permissions SET name ='ROLE_GET' WHERE
+            permissions."name" = 'ADMINS_ROLES_GET';
+            UPDATE permissions SET name ='ROLE_PERMISSIONS_LIST' WHERE
+            permissions."name" = 'ADMINS_PERMISSIONS_LIST';
+
+            DELETE FROM roles_permissions WHERE permission_id = (SELECT permissions."id" FROM permissions WHERE
+            permissions."name" = 'ROLE_REMOVE_PERMISSIONS');
+            DELETE FROM permissions WHERE permissions."name" = 'ROLE_REMOVE_PERMISSIONS';
+
+            DELETE FROM roles_permissions WHERE permission_id = (SELECT permissions."id" FROM permissions WHERE
+            permissions."name" = 'ROLE_ADD_PERMISSIONS');
+            DELETE FROM permissions WHERE permissions."name" = 'ROLE_ADD_PERMISSIONS';
+
+            DELETE FROM roles_permissions WHERE permission_id = (SELECT permissions."id" FROM permissions WHERE
+            permissions."name" = 'ROLE_UNSIGNED_PERMISSION_LIST');
+            DELETE FROM permissions WHERE permissions."name" = 'ROLE_UNSIGNED_PERMISSION_LIST';
+        </sql>
+    </changeSet>
+</databaseChangeLog>

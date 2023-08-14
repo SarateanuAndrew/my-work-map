@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet id="20220224130800_add_admin_permissions" author="dev" failOnError="true">
+        <sql>
+            INSERT INTO permissions(name)
+            SELECT 'ROLE_UNSIGNED_PERMISSION_LIST'
+            WHERE NOT EXISTS (SELECT name FROM permissions WHERE name='ROLE_UNSIGNED_PERMISSION_LIST');
+
+            INSERT INTO permissions(name)
+            SELECT 'ROLE_REMOVE_PERMISSIONS' WHERE NOT EXISTS (SELECT name FROM permissions WHERE name='ROLE_REMOVE_PERMISSIONS');
+
+            INSERT INTO permissions(name)
+            SELECT 'ROLE_ADD_PERMISSIONS' WHERE NOT EXISTS (SELECT name FROM permissions WHERE name='ROLE_ADD_PERMISSIONS');
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT r.id, p.id
+            FROM roles r,
+                 permissions p
+            where r.name = 'ADMIN'
+              AND p.name in ('ROLE_UNSIGNED_PERMISSION_LIST', 'ROLE_REMOVE_PERMISSIONS', 'ROLE_ADD_PERMISSIONS')
+              AND NOT exists(Select *
+                             from roles_permissions rp
+                             where r.id = rp.role_id
+                               AND p.id = rp.permission_id);
+        </sql>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet id="202207201785000_add_internal_portfolio_report_bi_weekly_ui" author="dev" failOnError="true">
+        <sql>
+            UPDATE roles
+            SET ui_tab_list = '[
+                {
+                    "name": "TRANSACTION_MANAGEMENT",
+                    "items": [
+                        {
+                            "name": "AUTHORIZATIONS"
+                        },
+                        {
+                            "name": "TRANSACTIONS"
+                        }
+                    ]
+                },
+                {
+                    "name": "DISPUTE_RESOLUTION",
+                    "items": [
+                        {
+                            "name": "CHARGEBACKS"
+                        }
+                    ]
+                },
+                {
+                    "name": "REPORTS",
+                    "items": [
+                        {
+                            "name": "MERCHANT_FEE_REPORTS"
+                        },
+                        {
+                            "name": "INTERNAL_MERCHANT_PORTFOLIO_REPORT"
+                        },
+                        {
+                            "name": "GENERAL_ACCOUNT_DATA_REPORT"
+                        },
+                        {
+                            "name": "DAILY_EXCEPTION_REPORT_EXCESSIVE_ACTIVITY"
+                        },
+                        {
+                            "name": "DAILY_EXCEPTION_REPORT_EXCESSIVE_ACTIVITY_LIVE"
+                        },
+                        {
+                            "name": "INTERNAL_PORTFOLIO_REPORT_BI_WEEKLY"
+                        }
+                    ]
+                },
+                {
+                    "name": "SYSTEM",
+                    "items": [
+                        {
+                            "name": "MERCHANTS"
+                        },
+                        {
+                            "name": "PROGRAMS"
+                        }
+                    ]
+                },
+                {
+                    "name": "USER_MANAGEMENT",
+                    "items": [
+                        {
+                            "name": "USER_LIST"
+                        },
+                        {
+                            "name": "ROLE_LIST"
+                        }
+                    ]
+                },
+                {
+                    "name": "LOGS",
+                    "items": [
+                        {
+                            "name": "API_LOGS"
+                        }
+                    ]
+                }
+            ]'
+            where name = 'ADMIN';
+
+
+        </sql>
+    </changeSet>
+</databaseChangeLog>

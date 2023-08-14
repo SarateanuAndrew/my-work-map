@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet id="20200427203211_add_kyc_crypto_manual_statuses_enum" author="dev" failOnError="true">
+        <sql>
+            CREATE TYPE KYC_CRYPTO_MANUAL_STATUS AS ENUM (
+                'ACCEPTED',
+                'NOT_ACCEPTED'
+            );
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet id="add_chats_blocked_clients_table" author="dev" failOnError="true">
+        <sql>
+            CREATE TABLE chats_blocked_clients (
+                client_id           BIGINT          NOT NULL,
+                chat_id             BIGINT          NOT NULL,
+                created_time        TIMESTAMP       NOT NULL DEFAULT NOW(),
+            );
+
+            ALTER TABLE chats_blocked_clients
+                ADD CONSTRAINT fk_chats_blocked_clients_client_id FOREIGN KEY (client_id) REFERENCES clients(id);
+
+            ALTER TABLE chats_blocked_clients
+                ADD CONSTRAINT fk_chats_blocked_clients_case_id FOREIGN KEY (case_id) REFERENCES cases(id);
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

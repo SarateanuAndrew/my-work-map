@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet id="20220414180801_add_permissions_for_admin_level" author="dev"
+               failOnError="true">
+        <sql>
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'ADMIN' limit 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+                'TRANSACTION_GET'
+                );
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'ADMIN' limit 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+                'TRANSACTION_LIST'
+                );
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'ADMIN' limit 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+                'TRANSACTION_CSV'
+                );
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'ADMIN' limit 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+                'REPORTS_LIST'
+                );
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'ADMIN' limit 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+                'REPORTS_DOWNLOAD'
+                );
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'ADMIN' limit 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+                'ACCOUNT_GET'
+                );
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'ADMIN' limit 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+                'PROGRAMS_LIST'
+                );
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'ADMIN' limit 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+                'MERCHANT_CREATE'
+                );
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'ADMIN' limit 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+                'PROGRAMS_CREATE'
+                );
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'ADMIN' limit 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+                'PROCESSOR_LIST'
+                );
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'ADMIN' limit 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+                'PRODUCT_LIST'
+                );
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'ADMIN' limit 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+                'MERCHANT_UPDATE'
+                );
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'ADMIN' limit 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+                'CORPORATE_LIST'
+                );
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'ADMIN' limit 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+                'MERCHANT_GET'
+                );
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'ADMIN' limit 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+                'AUTHORIZATION_CSV'
+                );
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'ADMIN' limit 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+                'AUTHORIZATION_LIST'
+                );
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'ADMIN' limit 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+                'AUTHORIZATION_GET'
+                );
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'ADMIN' limit 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+                'AUDIT_LIST'
+                );
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'ADMIN' limit 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+                'AUDIT_GET'
+                );
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'ADMIN' limit 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+                'CHARGEBACKS_LIST'
+                );
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'ADMIN' limit 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+                'CHARGEBACKS_GET'
+                );
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'ADMIN' limit 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+                'ADJUSTMENTS_LIST'
+                );
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'ADMIN' limit 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+                'ADJUSTMENTS_GET'
+                );
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'ADMIN' limit 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+                'AUTHORIZATION_VOID'
+                );
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'ADMIN' limit 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+                'AUTHORIZATION_REFUND'
+                );
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'ADMIN' limit 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+                'ADMIN_DISABLED_LIST'
+                );
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'ADMIN' limit 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+                'ADMINS_ACTIVATE'
+                );
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'ADMIN' LIMIT 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+                'CLIENT_CREATE'
+                );
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'ADMIN' LIMIT 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+                'CLIENT_LIST'
+                );
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'ADMIN' LIMIT 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+                'PROGRAMS_MANAGERS_LIST'
+                );
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'ADMIN' limit 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+                'ADMINS_PERMISSIONS_LIST'
+                );
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'ADMIN' limit 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+                'ADMINS_DISABLED_LIST'
+                );
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'ADMIN' limit 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+                'TRANSACTION_FEE_GET'
+                );
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'ADMIN' limit 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+                'TRANSACTION_FEE_UPDATE'
+                );
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'ADMIN' limit 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+                'REPORTS_GET'
+                );
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'ADMIN' limit 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+                'REPORTS_CREATE'
+                );
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'ADMIN' limit 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+                'REPORTS_CHANGE_STATUS'
+                );
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'ADMIN' limit 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+                'RAPID_CONNECT_MERCHANT_GET'
+                );
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'ADMIN' limit 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+                'RAPID_CONNECT_MERCHANTS_UPDATE'
+                );
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'ADMIN' limit 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+                'ACCOUNT_HOLDER_GET'
+                );
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'ADMIN' limit 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+                'ACCOUNT_HOLDERS_UPDATE'
+                );
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'ADMIN' limit 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+                'MERCHANT_TOGGLE'
+                );
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'ADMIN' limit 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+                'BLACKLIST_PAN'
+                );
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'ADMIN' limit 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+                'BLACKLIST_PAN_DELETE'
+                );
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'ADMIN' limit 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+                'ROLE_UNSIGNED_PERMISSION_LIST'
+                );
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'ADMIN' limit 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+                'ROLE_REMOVE_PERMISSIONS'
+                );
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'ADMIN' limit 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+                'ROLE_ADD_PERMISSIONS'
+                );
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'ADMIN' limit 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+                'MERCHANT_TOGGLE_STATUS_GET'
+                );
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'ADMIN' limit 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+                'ADMINS_UPDATE'
+                );
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'ADMIN' limit 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+                'ADMINS_ROLES_ADD'
+                );
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'ADMIN' limit 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+                'ADMINS_ROLES_LIST'
+                );
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'ADMIN' limit 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+                'ADMINS_ROLES_GET'
+                );
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'ADMIN' limit 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+                'ADMINS_DISABLE'
+                );
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'ADMIN' limit 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+                'ADMINS_ADD'
+                );;
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'ADMIN' limit 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+                'ADMINS_LIST'
+                );
+        </sql>
+    </changeSet>
+</databaseChangeLog>

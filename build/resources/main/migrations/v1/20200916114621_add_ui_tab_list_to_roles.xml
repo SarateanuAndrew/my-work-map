@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet id="20200916114621_add_ui_tab_list_to_roles" author="dev" failOnError="true">
+        <sql>
+            ALTER TABLE roles
+                ADD COLUMN ui_tab_list jsonb NOT NULL DEFAULT '
+                [
+                  {
+                    "name": "DUE_DILIGENCE",
+                    "items": [
+                      {
+                        "name": "KYC"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "TRANSACTION_MANAGEMENT",
+                    "items": [
+                      {
+                        "name": "AUTHORIZATIONS"
+                      },
+                      {
+                        "name": "TRANSACTIONS"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "REPORTS",
+                    "items": [
+                      {
+                        "name": "ACQUIRING"
+                      }
+                    ]
+                  }
+                ]
+                '::jsonb;
+        </sql>
+    </changeSet>
+</databaseChangeLog>

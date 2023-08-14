@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet id="add_tickets_table" author="dev" failOnError="true">
+        <sql>
+            CREATE TABLE tickets (
+                id               BIGSERIAL       NOT NULL PRIMARY KEY,
+                subject          VARCHAR(200)    NOT NULL,
+                user_id          BIGINT          NOT NULL,
+                admin_id         BIGINT          NULL,
+                project_id       BIGINT          NOT NULL,
+                status           VARCHAR(20)     NOT NULL,
+                priority         VARCHAR(20)     NOT NULL,
+                level            INT             NOT NULL,
+                created_time     TIMESTAMP       NOT NULL DEFAULT NOW(),
+                updated_time     TIMESTAMP       NOT NULL DEFAULT NOW()
+            );
+
+            CREATE TRIGGER tickets_updated_time_on_change BEFORE UPDATE
+                ON tickets FOR EACH ROW EXECUTE PROCEDURE updated_time_on_change();
+
+            ALTER TABLE tickets
+                ADD CONSTRAINT fk_tickets_user_id FOREIGN KEY (user_id) REFERENCES users(id);
+
+            ALTER TABLE tickets
+                ADD CONSTRAINT fk_tickets_project_id FOREIGN KEY (project_id) REFERENCES projects(id);
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

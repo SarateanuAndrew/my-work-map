@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet id="202205191285000_add_reason_to_admins_table.xml" author="dev" failOnError="true">
+        <sql>
+            ALTER TABLE admins
+            ADD COLUMN IF NOT EXISTS reason VARCHAR DEFAULT NULL,
+            ADD COLUMN IF NOT EXISTS updated_by BIGINT DEFAULT NULL,
+            ADD COLUMN IF NOT EXISTS history jsonb default '[]';
+
+            CREATE FUNCTION admins_history() RETURNS trigger
+            LANGUAGE plpgsql AS
+            'BEGIN
+            IF (TG_OP = ''INSERT'') THEN
+            new.history = jsonb_build_array();
+            end if;
+
+            new.history = new.history || jsonb_build_array(
+            jsonb_build_object(
+            ''firstName'', NEW.first_name,
+            ''lastName'', NEW.last_name,
+            ''email'', NEW.email,
+            ''roleId'', NEW.role_id,
+            ''disabledAt'', NEW.disabled_at,
+            ''status'', NEW.status,
+            ''reason'', NEW.reason,
+            ''updatedBy'', NEW.updated_by,
+            ''updatedTime'', NEW.updated_time));
+
+            RETURN NEW;
+            END;' ;
+
+            CREATE TRIGGER admins_history
+            BEFORE INSERT OR UPDATE OF first_name,last_name,email,role_id,disabled_at,status,reason
+            ON admins
+            FOR EACH ROW
+            EXECUTE PROCEDURE admins_history();
+
+        </sql>
+
+    </changeSet>
+</databaseChangeLog>

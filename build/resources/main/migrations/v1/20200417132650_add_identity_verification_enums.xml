@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet id="20200417132650_add_identity_verification_enums" author="dev" failOnError="true">
+        <sql>
+            CREATE TYPE VERIFICATION_PROCESSOR AS ENUM (
+                'TRULIOO',
+                'ELLIPTIC',
+                'OPERATOR'
+            );
+            CREATE TYPE VERIFICATION_TYPE AS ENUM (
+                'ELECTRONIC_IDENTITY',
+                'PROOF_OF_IDENTITY',
+                'WATCHLIST',
+                'CRYPTO_RISK_ANALYSIS',
+                'ADDITIONAL_PROOF_OF_ADDRESS',
+                'PROOF_OF_ADDRESS',
+                'SOURCE_OF_FUNDS'
+            );
+            CREATE TYPE KYC_FIELD_NAME AS ENUM (
+                'FIRST_NAME',
+                'LAST_NAME',
+                'BIRTH_DATE',
+                'BILLING_ADDRESS_COUNTRY_CODE',
+                'BILLING_ADDRESS_CITY',
+                'BILLING_ADDRESS_STREET_NAME',
+                'BILLING_ADDRESS_BUILDING_NUMBER',
+                'BILLING_ADDRESS_POSTAL_CODE',
+                'NATIONAL_IDENTITY_NUMBER'
+            );
+            CREATE TYPE KYC_FIELD_STATUS AS ENUM (
+                'MATCH',
+                'NO_MATCH',
+                'MISSING'
+            );
+            CREATE TYPE KYC_REQUEST_STATUS AS ENUM (
+                'APPROVED',
+                'REJECTED',
+                'PENDING',
+                'PROCESSING',
+                'ON_HOLD',
+                'ERRORS_ANALYSIS'
+            );
+            CREATE TYPE KYC_VERIFICATION_STATUS AS ENUM (
+                'READY_FOR_VERIFICATION',
+                'READY_FOR_AUTO_VERIFICATION',
+                'READY_FOR_MANUAL_VERIFICATION',
+                'SENT_TO_AUTO_VERIFICATION',
+                'RECEIVED_VERIFICATION_RESULTS',
+                'AUTO_VERIFICATION_IS_FAILED',
+                'AUTO_VERIFICATION_TIME_OUT',
+                'AUTO_APPROVAL',
+                'AUTO_REJECTION',
+                'READY_TO_ASK_UPDATES',
+                'MANUAL_APPROVAL',
+                'MANUAL_REJECTION',
+                'CLARIFICATIONS_NEEDED',
+                'SENT_REQUEST_TO_APPLICANT'
+            );
+        </sql>
+    </changeSet>
+</databaseChangeLog>

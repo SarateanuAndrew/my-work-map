@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet id="add_roles_table" author="dev" failOnError="true">
+        <sql>
+            CREATE TABLE roles (
+                id               BIGSERIAL       NOT NULL PRIMARY KEY,
+                name             VARCHAR(200)    NOT NULL,
+                description      VARCHAR(255)    NOT NULL,
+                created_time     TIMESTAMP       NOT NULL DEFAULT NOW(),
+                updated_time     TIMESTAMP       NOT NULL DEFAULT NOW()
+            );
+
+            CREATE TRIGGER roles_updated_time_on_change BEFORE UPDATE
+                ON roles FOR EACH ROW EXECUTE PROCEDURE updated_time_on_change();
+
+            ALTER TABLE roles ADD CONSTRAINT roles_unique_name UNIQUE (name);
+
+            INSERT INTO roles (name, description)
+                VALUES ('SUPERVISOR', 'Supervisor');
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet id="20200228104647_create_view_only_role" author="dev" failOnError="true">
+        <sql>
+            INSERT INTO roles (name, description) VALUES ('VIEW_MODE', 'view mode role');
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'VIEW_MODE' limit 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+                'USERS_LIST',
+                'USERS_GET',
+                'TRANSACTIONS_LIST',
+                'TRANSACTIONS_GET',
+                'SUPPORT_TICKETS_LIST',
+                'SUPPORT_TICKETS_GET',
+                'SUPPORT_TICKETS_MESSAGES_LIST',
+                'REPORTS_LIST',
+                'PROJECTS_LIST',
+                'PROGRAMS_LIST',
+                'PAYMENTS_LIST',
+                'PAYMENTS_GET',
+                'OFFERS_LIST',
+                'OFFERS_GET',
+                'CONTENT_AUDIT_CASES_LIST',
+                'CONTENT_AUDIT_CASES_GET',
+                'CARDS_TRANSACTIONS_LIST',
+                'CARDS_REPORTS_LIST',
+                'CARDS_LIST',
+                'CARDS_GET',
+                'CARDS_LIST_CSV',
+                'CARDHOLDERS_LIST',
+                'CARDHOLDERS_GET',
+                'AUCTIONS_LIST',
+                'AUCTIONS_GET',
+                'ADMINS_LIST',
+                'ADMINS_GET',
+                'ADMINS_ROLES_LIST',
+                'ADMINS_ROLES_GET',
+                'ADMINS_PERMISSIONS_LIST',
+                'ACCOUNT_GET'
+            );
+        </sql>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet id="220210707153556_add_status_disabledAt_to_admin_table" author="dev" failOnError="true">
+        <sql>
+            ALTER TABLE admins ADD COLUMN status VARCHAR(50) NULL;
+            ALTER TABLE admins ADD COLUMN disabled_At TIMESTAMP NULL;
+        </sql>
+    </changeSet>
+</databaseChangeLog>

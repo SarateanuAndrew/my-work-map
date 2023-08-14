@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet id="add_ca_cases_users_table" author="dev" failOnError="true">
+        <sql>
+            CREATE TABLE ca_cases_users (
+                id                  BIGSERIAL       NOT NULL PRIMARY KEY,
+                user_id             BIGINT          NOT NULL,
+                case_id             BIGINT          NOT NULL
+            );
+
+            ALTER TABLE ca_cases_users
+                ADD CONSTRAINT fk_ca_cases_users_user_id FOREIGN KEY (user_id) REFERENCES users(id);
+
+            ALTER TABLE ca_cases_users
+                ADD CONSTRAINT fk_ca_cases_users_case_id FOREIGN KEY (case_id) REFERENCES ca_cases(id);
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

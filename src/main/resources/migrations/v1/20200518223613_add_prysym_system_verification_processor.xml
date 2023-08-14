@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet id="20200518223613_add_prysym_system_verification_processor" author="dev" failOnError="true">
+        <sql>
+            DROP TYPE IF EXISTS VERIFICATION_PROCESSOR;
+            CREATE TYPE KYC_VERIFICATION_PROCESSOR AS ENUM (
+                'TRULIOO',
+                'ELLIPTIC',
+                'OPERATOR',
+                'PRYSYM'
+            );
+        </sql>
+    </changeSet>
+</databaseChangeLog>

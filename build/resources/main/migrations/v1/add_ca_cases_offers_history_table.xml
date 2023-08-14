@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet id="add_ca_cases_offers_history_table" author="dev" failOnError="true">
+        <sql>
+            CREATE TABLE ca_cases_offers_history (
+                id                  BIGSERIAL       NOT NULL PRIMARY KEY,
+                offer_id            BIGINT          NOT NULL,
+                admin_id            BIGINT          NOT NULL,
+                case_id             BIGINT          NOT NULL,
+                blocked             BOOLEAN         NOT NULL,
+                created_time        TIMESTAMP       NOT NULL DEFAULT NOW()
+            );
+
+            ALTER TABLE ca_cases_offers_history
+                ADD CONSTRAINT fk_ca_cases_offers_history_offer_id FOREIGN KEY (offer_id) REFERENCES offers(id);
+
+            ALTER TABLE ca_cases_offers_history
+                ADD CONSTRAINT fk_ca_cases_offers_history_case_id FOREIGN KEY (case_id) REFERENCES ca_cases(id);
+
+            ALTER TABLE ca_cases_offers_history
+                ADD CONSTRAINT fk_ca_cases_offers_history_admin_id FOREIGN KEY (admin_id) REFERENCES admins(id);
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

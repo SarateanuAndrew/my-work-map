@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet id="add_roles_permissions_table" author="dev" failOnError="true">
+        <sql>
+            CREATE TABLE roles_permissions (
+                id               BIGSERIAL       NOT NULL PRIMARY KEY,
+                role_id          BIGINT          NOT NULL,
+                permission_id    BIGINT          NOT NULL,
+                created_time     TIMESTAMP       NOT NULL DEFAULT NOW()
+            );
+
+            ALTER TABLE roles_permissions
+                ADD CONSTRAINT fk_roles_permissions_role_id FOREIGN KEY (role_id) REFERENCES roles(id);
+
+            ALTER TABLE roles_permissions
+                ADD CONSTRAINT fk_roles_permissions_permission_id FOREIGN KEY (permission_id) REFERENCES permissions(id);
+
+            INSERT INTO roles_permissions (role_id, permission_id)
+                VALUES (1, 1);
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet id="add_admins_table" author="dev" failOnError="true">
+        <sql>
+            CREATE TABLE audits (
+                id                  BIGSERIAL      NOT NULL PRIMARY KEY,
+                owner               VARCHAR(350)   NULL,
+                type                VARCHAR(200)   NULL,
+                info                JSON           NULL,
+                user_id             BIGINT         NULL,
+                merchant_id         BIGINT         NULL,
+                corporate_id        BIGINT         NULL,
+                representative_id   BIGINT         NULL,
+                transaction_id      BIGINT         NULL,
+                action              VARCHAR(255)   NULL,
+                admin_id            BIGINT         NULL,
+                payment_id          BIGINT         NULL,
+                payee_id            BIGINT         NULL,
+                created_time        TIMESTAMP      NOT NULL DEFAULT NOW()
+            );
+        </sql>
+    </changeSet>
+</databaseChangeLog>

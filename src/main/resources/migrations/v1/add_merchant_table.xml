@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet id="add_merchant_table" author="dev" failOnError="true">
+        <sql>
+            CREATE TABLE merchants (
+                id                  BIGSERIAL          NOT NULL PRIMARY KEY,
+                merchant_id         UUID               NOT NULL,
+                admin_id            BIGINT             NOT NULL
+            );
+
+            ALTER TABLE merchants
+                ADD CONSTRAINT fk_merchant_admin_id FOREIGN KEY (admin_id) REFERENCES admins(id);
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

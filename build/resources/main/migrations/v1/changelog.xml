@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <include file="add_permissions_table.xml" relativeToChangelogFile="true"/>
+    <include file="add_roles_table.xml" relativeToChangelogFile="true"/>
+    <include file="add_roles_permissions_table.xml" relativeToChangelogFile="true"/>
+    <include file="add_admins_table.xml" relativeToChangelogFile="true"/>
+    <include file="add_sessions_table.xml" relativeToChangelogFile="true"/>
+    <include file="add_projects_table.xml" relativeToChangelogFile="true"/>
+    <include file="add_admins_table.xml" relativeToChangelogFile="true"/>
+    <include file="add_projects_table.xml" relativeToChangelogFile="true"/>
+    <include file="add_sessions_table.xml" relativeToChangelogFile="true"/>
+    <include file="add_users_table.xml" relativeToChangelogFile="true"/>
+    <include file="add_tickets_table.xml" relativeToChangelogFile="true"/>
+    <include file="add_tickets_messages_table.xml" relativeToChangelogFile="true"/>
+    <include file="add_tickets_statuses_table.xml" relativeToChangelogFile="true"/>
+    <include file="add_email_confirmation_codes_table.xml" relativeToChangelogFile="true"/>
+    <include file="add_offers_table.xml" relativeToChangelogFile="true"/>
+    <include file="add_auctions_table.xml" relativeToChangelogFile="true"/>
+    <include file="add_images_table.xml" relativeToChangelogFile="true"/>
+    <include file="add_auctions_images_table.xml" relativeToChangelogFile="true"/>
+    <include file="add_offers_images_table.xml" relativeToChangelogFile="true"/>
+    <include file="add_users_permissions_table.xml" relativeToChangelogFile="true"/>
+    <include file="add_merchant_table.xml" relativeToChangelogFile="true"/>
+
+    <include file="add_ca_cases_table.xml" relativeToChangelogFile="true"/>
+    <include file="add_ca_cases_images_table.xml" relativeToChangelogFile="true"/>
+    <include file="add_ca_cases_texts_table.xml" relativeToChangelogFile="true"/>
+    <include file="add_ca_cases_offers_table.xml" relativeToChangelogFile="true"/>
+    <include file="add_ca_cases_auctions_table.xml" relativeToChangelogFile="true"/>
+    <include file="add_ca_cases_images_history_table.xml" relativeToChangelogFile="true"/>
+    <include file="add_ca_cases_reporters_table.xml" relativeToChangelogFile="true"/>
+    <include file="add_ca_cases_statuses_table.xml" relativeToChangelogFile="true"/>
+    <include file="add_ca_cases_texts_history_table.xml" relativeToChangelogFile="true"/>
+    <include file="add_ca_cases_texts_auctions_history_table.xml" relativeToChangelogFile="true"/>
+    <include file="add_ca_cases_texts_offers_history_table.xml" relativeToChangelogFile="true"/>
+    <include file="add_ca_cases_texts_users_history_table.xml" relativeToChangelogFile="true"/>
+    <include file="add_ca_cases_users_table.xml" relativeToChangelogFile="true"/>
+    <include file="add_ca_cases_auctions_history_table.xml" relativeToChangelogFile="true"/>
+    <include file="add_ca_cases_offers_history_table.xml" relativeToChangelogFile="true"/>
+    <include file="add_ca_cases_users_history_table.xml" relativeToChangelogFile="true"/>
+    <include file="add_ca_cases_permissions_history_table.xml" relativeToChangelogFile="true"/>
+    <include file="alter_admins_table_add_last_activity_time_column.xml" relativeToChangelogFile="true"/>
+    <!--                BOO-476 add audits table                    -->
+    <include file="20191107094811_add_audits_table.xml" relativeToChangelogFile="true"/>
+    <include file="20191122142247_alter_audits_table.xml" relativeToChangelogFile="true"/>
+    <include file="20200219142247_create_roles_permissions.xml" relativeToChangelogFile="true"/>
+    <include file="20200228104647_create_view_only_role.xml" relativeToChangelogFile="true"/>
+    <include file="20191216153600_add_sign_in_attempts_table.xml" relativeToChangelogFile="true"/>
+    <include file="20200305073947_add_permission_to_view_only_role.xml" relativeToChangelogFile="true"/>
+    <include file="20200309135618_add_permissions_to_export_csv.xml" relativeToChangelogFile="true"/>
+    <include file="20200309164307_add_permissions_to_export_csv.xml" relativeToChangelogFile="true"/>
+    <include file="20200310112433_add_permissions_to_unload_card.xml" relativeToChangelogFile="true"/>
+    <include file="20200310165254_add_permissions_to_generate_and_download_reports.xml" relativeToChangelogFile="true"/>
+    <include file="20200313160111_add_permissions_card_account_statement_report.xml" relativeToChangelogFile="true"/>
+    <include file="20200319152228_add_permissions_to_load_balances.xml" relativeToChangelogFile="true"/>
+    <include file="20200324230248_add_permissions_to_load_account_holders.xml" relativeToChangelogFile="true"/>
+    <include file="20200326092757_add_permission_to_get_account_holder_details.xml" relativeToChangelogFile="true"/>
+    <include file="20200331114926_add_permission_cards_change_status.xml" relativeToChangelogFile="true"/>
+    <include file="20200402181253_add_permission_for_reports_generation.xml" relativeToChangelogFile="true"/>
+    <include file="20200408130343_add_permissions_to_generate_kyc_csv.xml" relativeToChangelogFile="true"/>
+    <include file="20200417132650_add_identity_verification_enums.xml" relativeToChangelogFile="true"/>
+    <include file="20200425143721_add_kyc_crypto_status_enum.xml" relativeToChangelogFile="true"/>
+    <include file="20200427203211_add_kyc_crypto_manual_statuses_enum.xml" relativeToChangelogFile="true"/>
+    <include file="20200427203446_add_kyc_crypto_verification_type_enum.xml" relativeToChangelogFile="true"/>
+    <include file="20200428183829_alter_kyc_identity_verification_fields_table.xml" relativeToChangelogFile="true"/>
+    <include file="20200507114009_add_permissions_to_add_kyc_comment.xml" relativeToChangelogFile="true"/>
+    <include file="20200526144010_add_admin_creator_id.xml" relativeToChangelogFile="true"/>
+    <include file="20200518223613_add_prysym_system_verification_processor.xml" relativeToChangelogFile="true"/>
+    <include file="20200615112033_alter_verification_type_add_internal_verification.xml"
+             relativeToChangelogFile="true"/>
+    <include file="20200916114621_add_permissions_to_generate_acquire_report.xml" relativeToChangelogFile="true"/>
+    <include file="20200916114621_add_ui_tab_list_to_roles.xml" relativeToChangelogFile="true"/>
+    <include file="20201229124621_add_acquire_role.xml" relativeToChangelogFile="true"/>
+    <include file="20210330153011_add_kyc_fields_and_groups.xml" relativeToChangelogFile="true"/>
+    <include file="20210414114621_add_permissions_to_merchant_create.xml" relativeToChangelogFile="true"/>
+    <include file="20210423140700_add_permissions_to_corporate_list.xml" relativeToChangelogFile="true"/>
+    <include file="20210422153122_add_kyc_fields_billing_address_county.xml" relativeToChangelogFile="true"/>
+    <include file="20210513095700_add_permissions_to_merchant_get.xml" relativeToChangelogFile="true"/>
+    <include file="20210616094811_add_new_permissions_acquiring.xml" relativeToChangelogFile="true"/>
+    <include file="20210616094811_add_new_permissions_admin.xml" relativeToChangelogFile="true"/>
+    <include file="20210616092355_add_merchant_table_and_role.xml" relativeToChangelogFile="true"/>
+    <include file="20210616093455_add_merchant_transaction_list_permission.xml" relativeToChangelogFile="true"/>
+    <include file="20210618103556_add_merchant_authorization_list_and_get.xml" relativeToChangelogFile="true"/>
+    <include file="20210622100012_add_merchant_transaction_get_permission.xml" relativeToChangelogFile="true"/>
+    <include file="20210622103556_add_void_refund_permissions.xml" relativeToChangelogFile="true"/>
+    <include file="20210707133556_add_admin_disabled_list_permissions.xml" relativeToChangelogFile="true"/>
+    <include file="20210707153556_add_status_disabledAt_to_admin_table.xml" relativeToChangelogFile="true"/>
+    <include file="20210712153556_add_admin_activate_permissions.xml" relativeToChangelogFile="true"/>
+    <include file="20210717123556_add_client_permissions_table.xml" relativeToChangelogFile="true"/>
+    <include file="20210727150556_add_program_manager_list_permission.xml" relativeToChangelogFile="true"/>
+    <include file="20210819150556_add_code_type_to_email_confirmation_table.xml" relativeToChangelogFile="true"/>
+    <include file="20211011090556_add_menu_item.xml" relativeToChangelogFile="true"/>
+    <include file="20211011090560_reset_permissions.xml" relativeToChangelogFile="true"/>
+    <include file="20211211090560_add_transaction_permissions.xml" relativeToChangelogFile="true"/>
+    <include file="20211211090561_add_admin_permissions.xml" relativeToChangelogFile="true"/>
+    <include file="20211219091560_add_merchant_portal_permissions.xml" relativeToChangelogFile="true"/>
+    <include file="20211220092561_admin_disabled_permissions.xml" relativeToChangelogFile="true"/>
+    <include file="20211220092562_merchant_csv_permission.xml" relativeToChangelogFile="true"/>
+    <include file="20220106165000_add_report_permissions.xml" relativeToChangelogFile="true"/>
+    <include file="20220114151400_transaction_fee_permission.xml" relativeToChangelogFile="true"/>
+    <include file="20220120145000_merchant_permission.xml" relativeToChangelogFile="true"/>
+    <include file="20220121154621_add_permissions_to_account_holder_update.xml" relativeToChangelogFile="true"/>
+    <include file="20220121154621_add_permissions_to_rapid_connect_merchants_update.xml"
+             relativeToChangelogFile="true"/>
+    <include file="20220210130800_add_merchant_toggle_permission.xml" relativeToChangelogFile="true"/>
+    <include file="20220215180800_add_blackList_by_pan_per_merchant_permission.xml" relativeToChangelogFile="true"/>
+    <include file="20220217130800_update_ui_layout.xml" relativeToChangelogFile="true"/>
+    <include file="20220221180800_add_remove_from_blackList_by_pan_per_merchant_permission.xml"
+             relativeToChangelogFile="true"/>
+    <include file="20220224130800_add_admin_permissions.xml" relativeToChangelogFile="true"/>
+    <include file="20220328182000_merchant_toggle_status_get_permission.xml" relativeToChangelogFile="true"/>
+    <include file="20220330182000_update_disable_admin_permissions.xml" relativeToChangelogFile="true"/>
+    <include file="20220414180800_reset_all_permissions.xml" relativeToChangelogFile="true"/>
+    <include file="20220414180801_add_permissions_for_admin_level.xml" relativeToChangelogFile="true"/>
+    <include file="20220414180802_add_permissions_for_merchant_level.xml" relativeToChangelogFile="true"/>
+    <include file="20220414180803_add_permissions_for_view_level.xml" relativeToChangelogFile="true"/>
+    <include file="20220414180804_delete_acquire_role.xml" relativeToChangelogFile="true"/>
+    <include file="20220420182800_country_code.xml" relativeToChangelogFile="true"/>
+    <include file="20220420183000_add_admins_get_permission.xml" relativeToChangelogFile="true"/>
+    <include file="20220421183000_remove_adjustments_from_ui.xml" relativeToChangelogFile="true"/>
+    <include file="20220504143000_add_constrain_to_merchant_table.xml" relativeToChangelogFile="true"/>
+    <include file="20220521782800_admin_create_invitation_resend.xml" relativeToChangelogFile="true"/>
+    <include file="202205171285000_add_internal_merchant_portfolio_report_ui.xml" relativeToChangelogFile="true"/>
+    <include file="202205191285000_add_history_to_admins_table.xml" relativeToChangelogFile="true"/>
+    <include file="20220606128500_add_roles_update_permission.xml" relativeToChangelogFile="true"/>
+    <include file="20220613153500_add_general_account_permission.xml" relativeToChangelogFile="true"/>
+    <include file="20220614128500_remove_unused_permissions.xml" relativeToChangelogFile="true"/>
+    <include file="202206161285000_change logs_api_place_ui.xml" relativeToChangelogFile="true"/>
+    <include file="20220620101500_add_admin_reason_list_permission.xml" relativeToChangelogFile="true"/>
+    <include file="20220628101500_add_merchant_list_permission.xml" relativeToChangelogFile="true"/>
+    <include file="202206291285000_add_general_account_data_report_ui.xml" relativeToChangelogFile="true"/>
+    <include file="202207051285000_add_daily_exception_report_excessive_activity_report_ui.xml"
+             relativeToChangelogFile="true"/>
+    <include file="20220720134600_add_report_configuration_permission.xml" relativeToChangelogFile="true"/>
+    <include file="202207201785000_add_internal_portfolio_report_bi_weekly_ui.xml" relativeToChangelogFile="true"/>
+    <include file="20220727144400_add_merchant_configuration_permission.xml" relativeToChangelogFile="true"/>
+    <include file="20220811108500_add_receivers_permission.xml" relativeToChangelogFile="true"/>
+    <include file="20220808128500_add_role_permission_for_all_roles_with_no_account_get_permission.xml"
+             relativeToChangelogFile="true"/>
+    <include file="202208151785000_add_portfolio_transaction_summary_ui.xml" relativeToChangelogFile="true"/>
+    <include file="20220822134600_add_dashboard_general_info_permission.xml" relativeToChangelogFile="true"/>
+    <include file="20220908134600_add_dashboard_transaction_info_permission.xml" relativeToChangelogFile="true"/>
+    <include file="202209211785000_add_daily_transaction_summary_report_ui.xml" relativeToChangelogFile="true"/>
+    <include file="202209211785000_change_bi_weekly_report_to_monthly_ui.xml" relativeToChangelogFile="true"/>
+    <include file="20221113153500_add_program_processor_permission.xml" relativeToChangelogFile="true"/>
+    <include file="20221025182800_add_get_program_by_corporate_id_permission.xml" relativeToChangelogFile="true"/>
+    <include file="20221027182800_add_find_authorizations_status_permission.xml" relativeToChangelogFile="true"/>
+    <include file="202211071785000_add_unauthorized_transactions_ui.xml" relativeToChangelogFile="true"/>
+    <include file="20221118182800_add_create_report_job_test_permission.xml" relativeToChangelogFile="true"/>
+    <include file="202301101785000_add_daily_excessive_activity_reporting_ui.xml" relativeToChangelogFile="true"/>
+    <include file="20230112184800_add_dashboard_authorization_transaction_info_permission.xml"
+             relativeToChangelogFile="true"/>
+    <include file="202301101785000_add_daily_refund_exceptions_reporting_ui.xml" relativeToChangelogFile="true"/>
+    <include file="202302021785000_add_daily_batch_exceptions_reporting_ui.xml" relativeToChangelogFile="true"/>
+    <include file="2023020121785000_add_daily_ticket_exceptions_reporting_ui.xml" relativeToChangelogFile="true"/>
+    <include file="2023022021785000_add_update_password_time.xml" relativeToChangelogFile="true"/>
+    <include file="2023022421785000_add_passwords_table.xml" relativeToChangelogFile="true"/>
+    <include file="2020316182800_add_change_password_permission.xml" relativeToChangelogFile="true"/>
+
+
+    <include file="add_admins_subscription.xml" relativeToChangelogFile="true"/>
+
+</databaseChangeLog>

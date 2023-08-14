@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet id="20220628101500_add_merchant_list_permission.xml" author="dev" failOnError="true">
+        <sql>
+
+            INSERT INTO permissions(name)
+            SELECT 'MERCHANT_LIST' WHERE NOT EXISTS (SELECT name FROM permissions WHERE name =
+            'MERCHANT_LIST');
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT r.id, p.id
+            FROM roles r,
+                 permissions p
+            where r.name in ('ADMIN')
+              AND p.name in ('MERCHANT_LIST')
+              AND NOT EXISTS(Select *
+                             from roles_permissions rp
+                             where r.id = rp.role_id
+                               AND p.id = rp.permission_id);
+
+            DELETE
+            FROM roles_permissions
+            WHERE permission_id = (SELECT permissions."id"
+                                   FROM permissions
+                                   WHERE permissions."name" = 'TRANSACTIONS_GET');
+            DELETE
+            FROM permissions
+            WHERE permissions."name" = 'TRANSACTIONS_GET';
+
+            DELETE
+            FROM roles_permissions
+            WHERE permission_id = (SELECT permissions."id"
+                                   FROM permissions
+                                   WHERE permissions."name" = 'TRANSACTIONS_LIST');
+            DELETE
+            FROM permissions
+            WHERE permissions."name" = 'TRANSACTIONS_LIST';
+
+            DELETE
+            FROM roles_permissions
+            WHERE permission_id = (SELECT permissions."id"
+                                   FROM permissions
+                                   WHERE permissions."name" = 'TRANSACTION_RESEND_LINK');
+            DELETE
+            FROM permissions
+            WHERE permissions."name" = 'TRANSACTION_RESEND_LINK';
+
+            DELETE
+            FROM roles_permissions
+            WHERE permission_id = (SELECT permissions."id"
+                                   FROM permissions
+                                   WHERE permissions."name" = 'TRANSACTIONS_CANCEL');
+            DELETE
+            FROM permissions
+            WHERE permissions."name" = 'TRANSACTIONS_CANCEL';
+
+            DELETE
+            FROM roles_permissions
+            WHERE permission_id = (SELECT permissions."id"
+                                   FROM permissions
+                                   WHERE permissions."name" = 'TRANSACTION_CANCEL');
+            DELETE
+            FROM permissions
+            WHERE permissions."name" = 'TRANSACTION_CANCEL';
+
+            DELETE
+            FROM roles_permissions
+            WHERE permission_id = (SELECT permissions."id"
+                                   FROM permissions
+                                   WHERE permissions."name" = 'TRANSACTIONS_RESEND_LINK');
+            DELETE
+            FROM permissions
+            WHERE permissions."name" = 'TRANSACTIONS_RESEND_LINK';
+
+            DELETE
+            FROM roles_permissions
+            WHERE permission_id = (SELECT permissions."id"
+                                   FROM permissions
+                                   WHERE permissions."name" = 'ADMIN_DISABLED_LIST');
+            DELETE
+            FROM permissions
+            WHERE permissions."name" = 'ADMIN_DISABLED_LIST';
+        </sql>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet id="220220217130800_update_ui_layout" author="dev" failOnError="true">
+        <sql>
+            UPDATE roles
+            SET ui_tab_list = '[
+  {
+    "name": "TRANSACTION_MANAGEMENT",
+    "items": [
+      {
+        "name": "AUTHORIZATIONS"
+      },
+      {
+        "name": "TRANSACTIONS"
+      },
+      {
+        "name": "ADJUSTMENTS"
+      }
+    ]
+  },
+  {
+    "name": "DISPUTE_RESOLUTION",
+    "items": [
+      {
+        "name": "CHARGEBACKS"
+      }
+    ]
+  },
+  {
+    "name": "REPORTS",
+    "items": [
+      {
+        "name": "INACTIVE_USERS"
+      },
+      {
+        "name": "MERCHANT_FEE_REPORTS"
+      }
+    ]
+  },
+  {
+    "name": "LOGS",
+    "items": [
+      {
+        "name": "API_LOGS"
+      }
+    ]
+  },
+  {
+    "name": "SYSTEM",
+    "items": [
+      {
+        "name": "MERCHANTS"
+      },
+      {
+        "name": "PROGRAMS"
+      }
+    ]
+  }
+]'
+            where name = 'ACQUIRE';
+
+            UPDATE roles
+            SET ui_tab_list = '
+            [
+  {
+    "name": "TRANSACTION_MANAGEMENT",
+    "items": [
+      {
+        "name": "AUTHORIZATIONS"
+      },
+      {
+        "name": "TRANSACTIONS"
+      },
+      {
+        "name": "ADJUSTMENTS"
+      }
+    ]
+  },
+  {
+    "name": "DISPUTE_RESOLUTION",
+    "items": [
+      {
+        "name": "CHARGEBACKS"
+      }
+    ]
+  },
+  {
+    "name": "REPORTS",
+    "items": [
+      {
+        "name": "INACTIVE_USERS"
+      },
+      {
+        "name": "MERCHANT_FEE_REPORTS"
+      }
+    ]
+  },
+  {
+    "name": "LOGS",
+    "items": [
+      {
+        "name": "API_LOGS"
+      }
+    ]
+  },
+  {
+    "name": "SYSTEM",
+    "items": [
+      {
+        "name": "MERCHANTS"
+      },
+      {
+        "name": "PROGRAMS"
+      }
+    ]
+  }
+]'
+where name = 'ADMIN';
+
+
+        </sql>
+    </changeSet>
+</databaseChangeLog>

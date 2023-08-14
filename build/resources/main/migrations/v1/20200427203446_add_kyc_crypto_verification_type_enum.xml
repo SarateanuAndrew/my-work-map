@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet id="20200427203446_add_kyc_crypto_verification_type_enum" author="dev" failOnError="true">
+        <sql>
+            CREATE TYPE KYC_CRYPTO_VERIFICATION_TYPE AS ENUM (
+                'AUTO',
+                'MANUAL'
+            );
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

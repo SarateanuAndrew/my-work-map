@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet id="20220414180802_add_permissions_for_view_level" author="dev"
+               failOnError="true">
+        <sql>
+            update roles
+            set name= 'VIEW',
+                description ='View Role can view Only Transactions and Authorisations for all merchants'
+            where name = 'VIEW_MODE';
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'VIEW' limit 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+                'AUTHORIZATION_LIST'
+                );
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'VIEW' limit 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+                'AUTHORIZATION_GET'
+                );
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'VIEW' limit 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+                'TRANSACTION_LIST'
+                );
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'VIEW' limit 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+                'TRANSACTION_GET'
+                );
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'VIEW' limit 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+                'ACCOUNT_GET'
+                );
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'VIEW' limit 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+                'ADJUSTMENTS_LIST'
+                );
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'VIEW' limit 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+                'ADJUSTMENTS_GET'
+                );
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'VIEW' limit 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+                'CHARGEBACKS_LIST'
+                );
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'VIEW' limit 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+                'CHARGEBACKS_GET'
+                );
+
+
+            UPDATE roles
+            SET ui_tab_list = '[
+  {
+    "name": "TRANSACTION_MANAGEMENT",
+    "items": [
+      {
+        "name": "AUTHORIZATIONS"
+      },
+      {
+        "name": "TRANSACTIONS"
+      },
+      {
+        "name": "ADJUSTMENTS"
+      }
+    ]
+  },
+  {
+    "name": "DISPUTE_RESOLUTION",
+    "items": [
+      {
+        "name": "CHARGEBACKS"
+      }
+    ]
+  }
+]'
+            where name = 'VIEW';        </sql>
+    </changeSet>
+</databaseChangeLog>

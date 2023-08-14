@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet id="add_email_confirmation_codes_table" author="dev" failOnError="true">
+        <sql>
+            CREATE TABLE email_confirmation_codes (
+                id                  BIGSERIAL      NOT NULL PRIMARY KEY,
+                admin_id            BIGINT         NOT NULL,
+                email               VARCHAR(200)   NOT NULL,
+                code                VARCHAR(100)   NOT NULL,
+                created_time        TIMESTAMP      NOT NULL DEFAULT NOW()
+            );
+
+            ALTER TABLE email_confirmation_codes
+                ADD CONSTRAINT email_confirmation_codes_unique__code UNIQUE (code);
+
+            ALTER TABLE email_confirmation_codes
+                ADD CONSTRAINT fk_email_confirmation_codes_admin_id FOREIGN KEY (admin_id) REFERENCES admins(id);
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

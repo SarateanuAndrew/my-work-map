@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet id="20211011090556_add_menu_item.xml" author="dev" failOnError="true">
+        <sql>
+            UPDATE roles
+            SET ui_tab_list = '[
+  {
+    "name": "TRANSACTION_MANAGEMENT",
+    "items": [
+      {
+        "name": "AUTHORIZATIONS"
+      },
+      {
+        "name": "TRANSACTIONS"
+      },
+      {
+        "name": "ADJUSTMENTS"
+      }
+    ]
+  },
+  {
+    "name": "DISPUTE_RESOLUTION",
+    "items": [
+      {
+        "name": "CHARGEBACKS"
+      }
+    ]
+  },
+  {
+    "name": "LOGS",
+    "items": [
+      {
+        "name": "API_LOGS"
+      }
+    ]
+  }
+]'
+            where name = 'ACQUIRE';
+
+            UPDATE roles
+            SET ui_tab_list = '[
+  {
+    "name": "TRANSACTION_MANAGEMENT",
+    "items": [
+      {
+        "name": "AUTHORIZATIONS"
+      },
+      {
+        "name": "TRANSACTIONS"
+      },
+      {
+        "name": "ADJUSTMENTS"
+      }
+    ]
+  },
+  {
+    "name": "DISPUTE_RESOLUTION",
+    "items": [
+      {
+        "name": "CHARGEBACKS"
+      }
+    ]
+  },
+  {
+    "name": "REPORTS",
+    "items": [
+      {
+        "name": "INACTIVE_USERS"
+      }
+    ]
+  },
+  {
+    "name": "LOGS",
+    "items": [
+      {
+        "name": "API_LOGS"
+      }
+    ]
+  },
+  {
+    "name": "SYSTEM",
+    "items": [
+      {
+        "name": "MERCHANTS"
+      }
+    ]
+  }
+]'
+            where name = 'ADMIN';
+
+
+        </sql>
+    </changeSet>
+</databaseChangeLog>

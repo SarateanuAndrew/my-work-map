@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet id="20201229124621_add_acquire_role" author="dev" failOnError="true">
+        <sql>
+            INSERT INTO roles(name, description, ui_tab_list)
+            VALUES ('ACQUIRE', 'Acquire', '[
+              {
+                "name": "TRANSACTION_MANAGEMENT",
+                "items": [
+                  {
+                    "name": "AUTHORIZATIONS"
+                  },
+                  {
+                    "name": "TRANSACTIONS"
+                  }
+                ]
+              },
+              {
+                "name": "REPORTS",
+                "items": [
+                  {
+                    "name": "ACQUIRING"
+                  }
+                ]
+              }
+            ]');
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'ACQUIRE' limit 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+            'TRANSACTIONS_GET'
+            );
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'ACQUIRE' limit 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+            'TRANSACTIONS_LIST'
+            );
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'ACQUIRE' limit 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+            'REPORTS_TRANSACTION_FEE'
+            );
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'ACQUIRE' limit 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+            'REPORTS_LIST'
+            );
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'ACQUIRE' limit 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+            'REPORTS_DOWNLOAD'
+            );
+
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'ACQUIRE' limit 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+            'TRANSACTIONS_CSV'
+            );
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'ACQUIRE' limit 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+            'ACCOUNT_GET'
+            );
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'ACQUIRE' limit 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+            'PROGRAMS_LIST'
+            );
+
+        </sql>
+    </changeSet>
+</databaseChangeLog>

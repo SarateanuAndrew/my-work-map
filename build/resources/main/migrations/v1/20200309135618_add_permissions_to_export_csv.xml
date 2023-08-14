@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet id="20200309135618_add_permissions_to_export_csv" author="dev" failOnError="true">
+        <sql>
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'VIEW_MODE' limit 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+                'CARDS_LIST_CSV',
+                'SUPPORT_TICKETS_LIST_CSV',
+                'CARDHOLDERS_LIST_CSV'
+            );
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'SUPERVISOR' limit 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+                'CARDS_LIST_CSV',
+                'SUPPORT_TICKETS_LIST_CSV',
+                'CARDHOLDERS_LIST_CSV'
+            );
+        </sql>
+    </changeSet>
+</databaseChangeLog>

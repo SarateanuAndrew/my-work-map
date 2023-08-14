@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet id="add_sessions_table" author="dev" failOnError="true">
+        <sql>
+            CREATE TABLE sessions (
+                id                    BIGSERIAL       NOT NULL PRIMARY KEY,
+                admin_id              BIGINT          NOT NULL,
+                access_token          VARCHAR(255)    NOT NULL,
+                level                 INT             NOT NULL,
+                created_time          TIMESTAMP       NOT NULL DEFAULT NOW(),
+                updated_time          TIMESTAMP       NOT NULL DEFAULT NOW()
+            );
+
+            CREATE TRIGGER sessions_updated_time_on_change BEFORE UPDATE
+                ON sessions FOR EACH ROW EXECUTE PROCEDURE updated_time_on_change();
+
+            ALTER TABLE sessions
+                ADD CONSTRAINT fk_sessions_admin_id FOREIGN KEY (admin_id) REFERENCES admins(id);
+
+            ALTER TABLE sessions ADD CONSTRAINT sessions_unique_access_token UNIQUE (access_token);
+            ALTER TABLE sessions ADD CONSTRAINT sessions_unique_admin_id UNIQUE (admin_id);
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

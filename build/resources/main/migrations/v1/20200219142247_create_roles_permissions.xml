@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet id="20191122142247_alter_audits_table" author="dev" failOnError="true">
+        <sql>
+            INSERT INTO permissions(name) VALUES('USERS_LIST');
+            INSERT INTO permissions(name) VALUES('USERS_GET');
+            INSERT INTO permissions(name) VALUES('USERS_ADD');
+            INSERT INTO permissions(name) VALUES('USERS_CHANGE_STATUS');
+            INSERT INTO permissions(name) VALUES('USERS_LOGS');
+
+            INSERT INTO permissions(name) VALUES('TRANSACTIONS_LIST');
+            INSERT INTO permissions(name) VALUES('TRANSACTIONS_GET');
+            INSERT INTO permissions(name) VALUES('TRANSACTIONS_CANCEL');
+            INSERT INTO permissions(name) VALUES('TRANSACTIONS_RESEND_LINK');
+
+            INSERT INTO permissions(name) VALUES('SUPPORT_TICKETS_LIST');
+            INSERT INTO permissions(name) VALUES('SUPPORT_TICKETS_STATISTICS');
+            INSERT INTO permissions(name) VALUES('SUPPORT_TICKETS_GET');
+            INSERT INTO permissions(name) VALUES('SUPPORT_TICKETS_ASSIGN');
+            INSERT INTO permissions(name) VALUES('SUPPORT_TICKETS_UPDATE');
+            INSERT INTO permissions(name) VALUES('SUPPORT_TICKETS_MESSAGES_ADD');
+            INSERT INTO permissions(name) VALUES('SUPPORT_TICKETS_MESSAGES_LIST');
+            INSERT INTO permissions(name) VALUES('SUPPORT_TICKETS_CLOSE');
+            INSERT INTO permissions(name) VALUES('SUPPORT_TICKETS_CREATE');
+
+            INSERT INTO permissions(name) VALUES('REPORTS_ACCOUNT_STATEMENT');
+            INSERT INTO permissions(name) VALUES('REPORTS_DAILY_SUMMARY_REPORT');
+            INSERT INTO permissions(name) VALUES('REPORTS_TRANSACTIONS_STATUSES_REPORT');
+            INSERT INTO permissions(name) VALUES('REPORTS_CHANGE_STATUS');
+            INSERT INTO permissions(name) VALUES('REPORTS_UPLOAD');
+            INSERT INTO permissions(name) VALUES('REPORTS_LIST');
+            INSERT INTO permissions(name) VALUES('REPORTS_DOWNLOAD');
+
+            INSERT INTO permissions(name) VALUES('PROJECTS_LIST');
+
+            INSERT INTO permissions(name) VALUES('PROGRAMS_LIST');
+
+            INSERT INTO permissions(name) VALUES('PAYMENTS_LIST');
+            INSERT INTO permissions(name) VALUES('PAYMENTS_GET');
+            INSERT INTO permissions(name) VALUES('PAYMENTS_CANCEL');
+
+            INSERT INTO permissions(name) VALUES('OFFERS_ADD');
+            INSERT INTO permissions(name) VALUES('OFFERS_LIST');
+            INSERT INTO permissions(name) VALUES('OFFERS_GET');
+
+            INSERT INTO permissions(name) VALUES('CONTENT_AUDIT_CASES_LIST');
+            INSERT INTO permissions(name) VALUES('CONTENT_AUDIT_CASES_ASSIGN');
+            INSERT INTO permissions(name) VALUES('CONTENT_AUDIT_CASES_REASSIGN');
+            INSERT INTO permissions(name) VALUES('CONTENT_AUDIT_CASES_DELAY');
+            INSERT INTO permissions(name) VALUES('CONTENT_AUDIT_CASES_ESCALATE');
+            INSERT INTO permissions(name) VALUES('CONTENT_AUDIT_CASES_GET');
+            INSERT INTO permissions(name) VALUES('CONTENT_AUDIT_CASES_BLOCK');
+
+            INSERT INTO permissions(name) VALUES('CARDS_TRANSACTIONS_LIST');
+
+            INSERT INTO permissions(name) VALUES('CARDS_REPORTS_DELETE');
+            INSERT INTO permissions(name) VALUES('CARDS_REPORTS_ACCEPT');
+            INSERT INTO permissions(name) VALUES('CARDS_REPORTS_ADD');
+            INSERT INTO permissions(name) VALUES('CARDS_REPORTS_LIST');
+            INSERT INTO permissions(name) VALUES('CARDS_REPORTS_DOWNLOAD');
+
+            INSERT INTO permissions(name) VALUES('CARDS_LIST');
+            INSERT INTO permissions(name) VALUES('CARDS_GET');
+            INSERT INTO permissions(name) VALUES('CARDS_LIST_CSV');
+
+            INSERT INTO permissions(name) VALUES('CARDHOLDERS_LIST');
+            INSERT INTO permissions(name) VALUES('CARDHOLDERS_GET');
+            INSERT INTO permissions(name) VALUES('CARDHOLDERS_CHANGE_STATUS');
+
+            INSERT INTO permissions(name) VALUES('AUCTIONS_ADD');
+            INSERT INTO permissions(name) VALUES('AUCTIONS_LIST');
+            INSERT INTO permissions(name) VALUES('AUCTIONS_GET');
+
+            INSERT INTO permissions(name) VALUES('ADMINS_ADD');
+            INSERT INTO permissions(name) VALUES('ADMINS_LIST');
+            INSERT INTO permissions(name) VALUES('ADMINS_GET');
+            INSERT INTO permissions(name) VALUES('ADMINS_ROLES_ADD');
+            INSERT INTO permissions(name) VALUES('ADMINS_ROLES_LIST');
+            INSERT INTO permissions(name) VALUES('ADMINS_ROLES_GET');
+            INSERT INTO permissions(name) VALUES('ADMINS_PERMISSIONS_LIST');
+
+            INSERT INTO permissions(name) VALUES('ACCOUNT_SIGN_OUT');
+            INSERT INTO permissions(name) VALUES('ACCOUNT_GET');
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'SUPERVISOR' limit 1), permissions.id
+            FROM permissions;
+
+        </sql>
+    </changeSet>
+</databaseChangeLog>

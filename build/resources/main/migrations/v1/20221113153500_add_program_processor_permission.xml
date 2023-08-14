@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet id="20221113153500_add_program_processor_permission" author="dev" failOnError="true">
+        <sql>
+
+            INSERT INTO permissions(name)
+            SELECT 'PROGRAMS_PROCESSOR' WHERE NOT EXISTS (SELECT name FROM permissions WHERE name =
+            'PROGRAMS_PROCESSOR');
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT r.id, p.id
+            FROM roles r,
+                 permissions p
+            where r.name in ('ADMIN')
+              AND p.name in ('PROGRAMS_PROCESSOR')
+              AND NOT EXISTS(Select *
+                             from roles_permissions rp
+                             where r.id = rp.role_id
+                               AND p.id = rp.permission_id);
+
+
+        </sql>
+    </changeSet>
+</databaseChangeLog>

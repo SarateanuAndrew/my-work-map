@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet id="20220808128500_add_role_permission_for_all_roles_with_no_account_get_permission" author="dev"
+               failOnError="true">
+        <sql>
+            insert into roles_permissions(role_id, permission_id)
+            select r.id, p.id
+            from roles r,
+                 permissions p
+            where p."name" = 'ACCOUNT_GET'
+              and not exists(
+                    select *
+                    from roles_permissions rp
+                    where r.id = rp.role_id
+                      and rp.permission_id = p.id
+                );
+        </sql>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet id="add_users_permissions_table" author="dev" failOnError="true">
+        <sql>
+            CREATE TABLE users_permissions (
+                user_id             BIGINT          NOT NULL,
+                permission_id       BIGINT          NULL,
+                permission          VARCHAR(20)     NOT NULL,
+                admin_id            BIGINT          NOT NULL,
+                created_time        TIMESTAMP       NOT NULL DEFAULT NOW()
+            );
+
+            ALTER TABLE users_permissions
+                ADD CONSTRAINT fk_users_permissions_user_id FOREIGN KEY (user_id) REFERENCES users(id);
+
+            ALTER TABLE users_permissions
+                ADD CONSTRAINT fk_users_permissions_admin_id FOREIGN KEY (admin_id) REFERENCES admins(id);
+
+            ALTER TABLE users_permissions
+                ADD CONSTRAINT users_permissions_unique_user_id_permission_id UNIQUE (user_id, permission_id);
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet id="20210707133556_add_admin_disabled_list_permissions" author="dev" failOnError="true">
+        <sql>
+            INSERT INTO permissions(name)
+            VALUES ('ADMIN_DISABLED_LIST');
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'ADMIN' limit 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+            'ADMIN_DISABLED_LIST'
+            );
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'SUPERVISOR' limit 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+            'ADMIN_DISABLED_LIST'
+            );
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'ACQUIRE' limit 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+            'ADMIN_DISABLED_LIST'
+            );
+        </sql>
+    </changeSet>
+</databaseChangeLog>

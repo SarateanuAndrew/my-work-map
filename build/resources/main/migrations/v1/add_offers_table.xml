@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet id="add_offers_table" author="dev" failOnError="true">
+        <sql>
+            CREATE TABLE offers (
+                id                      BIGSERIAL       NOT NULL PRIMARY KEY,
+                title                   VARCHAR(100)    NOT NULL,
+                description             VARCHAR(1000)   NOT NULL,
+                title_blocked           BOOLEAN         NOT NULL DEFAULT FALSE,
+                description_blocked     BOOLEAN         NOT NULL DEFAULT FALSE,
+                blocked                 BOOLEAN         NOT NULL DEFAULT FALSE,
+                type                    VARCHAR(20)     NOT NULL,
+                category_id             BIGINT          NOT NULL,
+                charity_id              BIGINT          NOT NULL,
+                price_amount            BIGINT          NOT NULL,
+                estimated_price_amount  BIGINT          NOT NULL,
+                charity_percent         BIGINT          NOT NULL,
+                place_id                BIGINT          NOT NULL,
+                details                 VARCHAR(1000)   NULL,
+                rules                   VARCHAR(1000)   NULL,
+                shipping                VARCHAR(1000)   NULL,
+                details_blocked         BOOLEAN         NOT NULL DEFAULT FALSE,
+                rules_blocked           BOOLEAN         NOT NULL DEFAULT FALSE,
+                shipping_blocked        BOOLEAN         NOT NULL DEFAULT FALSE,
+                created_time            TIMESTAMP       NOT NULL DEFAULT NOW(),
+                updated_time            TIMESTAMP       NOT NULL DEFAULT NOW()
+            );
+
+            CREATE TRIGGER offers_updated_time_on_change BEFORE UPDATE
+                ON offers FOR EACH ROW EXECUTE PROCEDURE updated_time_on_change();
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

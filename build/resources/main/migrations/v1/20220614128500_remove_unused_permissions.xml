@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet id="20220614128500_remove_unused_permissions.xml" author="dev" failOnError="true">
+        <sql>
+
+            DELETE FROM roles_permissions WHERE permission_id = (SELECT permissions."id" FROM permissions WHERE
+            permissions."name" = 'OFFERS_ADD');
+            DELETE FROM permissions WHERE permissions."name" = 'OFFERS_ADD';
+
+            DELETE FROM roles_permissions WHERE permission_id = (SELECT permissions."id" FROM permissions WHERE
+            permissions."name" = 'OFFERS_LIST');
+            DELETE FROM permissions WHERE permissions."name" = 'OFFERS_LIST';
+
+            DELETE FROM roles_permissions WHERE permission_id = (SELECT permissions."id" FROM permissions WHERE
+            permissions."name" = 'OFFERS_GET');
+            DELETE FROM permissions WHERE permissions."name" = 'OFFERS_GET';
+
+            DELETE FROM roles_permissions WHERE permission_id = (SELECT permissions."id" FROM permissions WHERE
+            permissions."name" = 'AUCTIONS_ADD');
+            DELETE FROM permissions WHERE permissions."name" = 'AUCTIONS_ADD';
+
+            DELETE FROM roles_permissions WHERE permission_id = (SELECT permissions."id" FROM permissions WHERE
+            permissions."name" = 'AUCTIONS_LIST');
+            DELETE FROM permissions WHERE permissions."name" = 'AUCTIONS_LIST';
+
+            DELETE FROM roles_permissions WHERE permission_id = (SELECT permissions."id" FROM permissions WHERE
+            permissions."name" = 'AUCTIONS_GET');
+            DELETE FROM permissions WHERE permissions."name" = 'AUCTIONS_GET';
+
+            DELETE FROM roles_permissions WHERE permission_id = (SELECT permissions."id" FROM permissions WHERE
+            permissions."name" = 'BALANCES_LIST');
+            DELETE FROM permissions WHERE permissions."name" = 'BALANCES_LIST';
+
+            DELETE FROM roles_permissions WHERE permission_id = (SELECT permissions."id" FROM permissions WHERE
+            permissions."name" = 'CARDHOLDERS_LIST');
+            DELETE FROM permissions WHERE permissions."name" = 'CARDHOLDERS_LIST';
+
+            DELETE FROM roles_permissions WHERE permission_id = (SELECT permissions."id" FROM permissions WHERE
+            permissions."name" = 'CARDHOLDERS_LIST_CSV');
+            DELETE FROM permissions WHERE permissions."name" = 'CARDHOLDERS_LIST_CSV';
+
+            DELETE FROM roles_permissions WHERE permission_id = (SELECT permissions."id" FROM permissions WHERE
+            permissions."name" = 'CARDHOLDERS_GET');
+            DELETE FROM permissions WHERE permissions."name" = 'CARDHOLDERS_GET';
+
+            DELETE FROM roles_permissions WHERE permission_id = (SELECT permissions."id" FROM permissions WHERE
+            permissions."name" = 'CARDHOLDERS_CHANGE_STATUS');
+            DELETE FROM permissions WHERE permissions."name" = 'CARDHOLDERS_CHANGE_STATUS';
+
+            DELETE FROM roles_permissions WHERE permission_id = (SELECT permissions."id" FROM permissions WHERE
+            permissions."name" = 'CARDS_LIST');
+            DELETE FROM permissions WHERE permissions."name" = 'CARDS_LIST';
+
+            DELETE FROM roles_permissions WHERE permission_id = (SELECT permissions."id" FROM permissions WHERE
+            permissions."name" = 'CARDS_GET');
+            DELETE FROM permissions WHERE permissions."name" = 'CARDS_GET';
+
+            DELETE FROM roles_permissions WHERE permission_id = (SELECT permissions."id" FROM permissions WHERE
+            permissions."name" = 'CARDS_LIST_CSV');
+            DELETE FROM permissions WHERE permissions."name" = 'CARDS_LIST_CSV';
+
+            DELETE FROM roles_permissions WHERE permission_id = (SELECT permissions."id" FROM permissions WHERE
+            permissions."name" = 'CARDS_UNLOAD');
+            DELETE FROM permissions WHERE permissions."name" = 'CARDS_UNLOAD';
+
+            DELETE FROM roles_permissions WHERE permission_id = (SELECT permissions."id" FROM permissions WHERE
+            permissions."name" = 'CARDS_CLOSE');
+            DELETE FROM permissions WHERE permissions."name" = 'CARDS_CLOSE';
+
+            DELETE FROM roles_permissions WHERE permission_id = (SELECT permissions."id" FROM permissions WHERE
+            permissions."name" = 'CARDS_CHANGE_STATUS');
+            DELETE FROM permissions WHERE permissions."name" = 'CARDS_CHANGE_STATUS';
+
+            DELETE FROM roles_permissions WHERE permission_id = (SELECT permissions."id" FROM permissions WHERE
+            permissions."name" = 'KYC_ADD_COMMENT');
+            DELETE FROM permissions WHERE permissions."name" = 'KYC_ADD_COMMENT';
+
+            DELETE FROM roles_permissions WHERE permission_id = (SELECT permissions."id" FROM permissions WHERE
+            permissions."name" = 'ACCOUNT_HOLDER_LIST_CSV');
+            DELETE FROM permissions WHERE permissions."name" = 'ACCOUNT_HOLDER_LIST_CSV';
+
+            DELETE FROM roles_permissions WHERE permission_id = (SELECT permissions."id" FROM permissions WHERE
+            permissions."name" = 'PAYMENTS_LIST');
+            DELETE FROM permissions WHERE permissions."name" = 'PAYMENTS_LIST';
+
+            DELETE FROM roles_permissions WHERE permission_id = (SELECT permissions."id" FROM permissions WHERE
+            permissions."name" = 'PAYMENTS_GET');
+            DELETE FROM permissions WHERE permissions."name" = 'PAYMENTS_GET';
+
+            DELETE FROM roles_permissions WHERE permission_id = (SELECT permissions."id" FROM permissions WHERE
+            permissions."name" = 'PAYMENTS_CANCEL');
+            DELETE FROM permissions WHERE permissions."name" = 'PAYMENTS_CANCEL';
+
+            DELETE FROM roles_permissions WHERE permission_id = (SELECT permissions."id" FROM permissions WHERE
+            permissions."name" = 'SUPPORT_TICKETS_LIST');
+            DELETE FROM permissions WHERE permissions."name" = 'SUPPORT_TICKETS_LIST';
+
+            DELETE FROM roles_permissions WHERE permission_id = (SELECT permissions."id" FROM permissions WHERE
+            permissions."name" = 'SUPPORT_TICKETS_LIST_CSV');
+            DELETE FROM permissions WHERE permissions."name" = 'SUPPORT_TICKETS_LIST_CSV';
+
+            DELETE FROM roles_permissions WHERE permission_id = (SELECT permissions."id" FROM permissions WHERE
+            permissions."name" = 'SUPPORT_TICKETS_STATISTICS');
+            DELETE FROM permissions WHERE permissions."name" = 'SUPPORT_TICKETS_STATISTICS';
+
+            DELETE FROM roles_permissions WHERE permission_id = (SELECT permissions."id" FROM permissions WHERE
+            permissions."name" = 'SUPPORT_TICKETS_GET');
+            DELETE FROM permissions WHERE permissions."name" = 'SUPPORT_TICKETS_GET';
+
+            DELETE FROM roles_permissions WHERE permission_id = (SELECT permissions."id" FROM permissions WHERE
+            permissions."name" = 'SUPPORT_TICKETS_ASSIGN');
+            DELETE FROM permissions WHERE permissions."name" = 'SUPPORT_TICKETS_ASSIGN';
+
+            DELETE FROM roles_permissions WHERE permission_id = (SELECT permissions."id" FROM permissions WHERE
+            permissions."name" = 'SUPPORT_TICKETS_UPDATE');
+            DELETE FROM permissions WHERE permissions."name" = 'SUPPORT_TICKETS_UPDATE';
+
+            DELETE FROM roles_permissions WHERE permission_id = (SELECT permissions."id" FROM permissions WHERE
+            permissions."name" = 'SUPPORT_TICKETS_MESSAGES_ADD');
+            DELETE FROM permissions WHERE permissions."name" = 'SUPPORT_TICKETS_MESSAGES_ADD';
+
+            DELETE FROM roles_permissions WHERE permission_id = (SELECT permissions."id" FROM permissions WHERE
+            permissions."name" = 'SUPPORT_TICKETS_CLOSE');
+            DELETE FROM permissions WHERE permissions."name" = 'SUPPORT_TICKETS_CLOSE';
+
+            DELETE FROM roles_permissions WHERE permission_id = (SELECT permissions."id" FROM permissions WHERE
+            permissions."name" = 'SUPPORT_TICKETS_MESSAGES_LIST');
+            DELETE FROM permissions WHERE permissions."name" = 'SUPPORT_TICKETS_MESSAGES_LIST';
+
+            DELETE FROM roles_permissions WHERE permission_id = (SELECT permissions."id" FROM permissions WHERE
+            permissions."name" = 'SUPPORT_TICKETS_CREATE');
+            DELETE FROM permissions WHERE permissions."name" = 'SUPPORT_TICKETS_CREATE';
+
+            DELETE FROM roles_permissions WHERE permission_id = (SELECT permissions."id" FROM permissions WHERE
+            permissions."name" = 'USERS_GET');
+            DELETE FROM permissions WHERE permissions."name" = 'USERS_GET';
+
+            DELETE FROM roles_permissions WHERE permission_id = (SELECT permissions."id" FROM permissions WHERE
+            permissions."name" = 'USERS_LIST');
+            DELETE FROM permissions WHERE permissions."name" = 'USERS_LIST';
+
+            DELETE FROM roles_permissions WHERE permission_id = (SELECT permissions."id" FROM permissions WHERE
+            permissions."name" = 'USERS_CHANGE_STATUS');
+            DELETE FROM permissions WHERE permissions."name" = 'USERS_CHANGE_STATUS';
+
+            DELETE FROM roles_permissions WHERE permission_id = (SELECT permissions."id" FROM permissions WHERE
+            permissions."name" = 'USERS_LOGS');
+            DELETE FROM permissions WHERE permissions."name" = 'USERS_LOGS';
+
+            DELETE FROM roles_permissions WHERE permission_id = (SELECT permissions."id" FROM permissions WHERE
+            permissions."name" = 'USERS_ADD');
+            DELETE FROM permissions WHERE permissions."name" = 'USERS_ADD';
+
+            DELETE FROM roles_permissions WHERE permission_id = (SELECT permissions."id" FROM permissions WHERE
+            permissions."name" = 'CONTENT_AUDIT_CASES_LIST');
+            DELETE FROM permissions WHERE permissions."name" = 'CONTENT_AUDIT_CASES_LIST';
+
+            DELETE FROM roles_permissions WHERE permission_id = (SELECT permissions."id" FROM permissions WHERE
+            permissions."name" = 'CONTENT_AUDIT_CASES_ASSIGN');
+            DELETE FROM permissions WHERE permissions."name" = 'CONTENT_AUDIT_CASES_ASSIGN';
+
+            DELETE FROM roles_permissions WHERE permission_id = (SELECT permissions."id" FROM permissions WHERE
+            permissions."name" = 'CONTENT_AUDIT_CASES_REASSIGN');
+            DELETE FROM permissions WHERE permissions."name" = 'CONTENT_AUDIT_CASES_REASSIGN';
+
+            DELETE FROM roles_permissions WHERE permission_id = (SELECT permissions."id" FROM permissions WHERE
+            permissions."name" = 'CONTENT_AUDIT_CASES_DELAY');
+            DELETE FROM permissions WHERE permissions."name" = 'CONTENT_AUDIT_CASES_DELAY';
+
+            DELETE FROM roles_permissions WHERE permission_id = (SELECT permissions."id" FROM permissions WHERE
+            permissions."name" = 'CONTENT_AUDIT_CASES_ESCALATE');
+            DELETE FROM permissions WHERE permissions."name" = 'CONTENT_AUDIT_CASES_ESCALATE';
+
+            DELETE FROM roles_permissions WHERE permission_id = (SELECT permissions."id" FROM permissions WHERE
+            permissions."name" = 'CONTENT_AUDIT_CASES_GET');
+            DELETE FROM permissions WHERE permissions."name" = 'CONTENT_AUDIT_CASES_GET';
+
+            DELETE FROM roles_permissions WHERE permission_id = (SELECT permissions."id" FROM permissions WHERE
+            permissions."name" = 'CONTENT_AUDIT_CASES_BLOCK');
+            DELETE FROM permissions WHERE permissions."name" = 'CONTENT_AUDIT_CASES_BLOCK';
+
+            DELETE FROM roles_permissions WHERE permission_id = (SELECT permissions."id" FROM permissions WHERE
+            permissions."name" = 'TRANSACTIONS_RESEND_LINK');
+            DELETE FROM permissions WHERE permissions."name" = 'TRANSACTIONS_RESEND_LINK';
+
+            DELETE FROM roles_permissions WHERE permission_id = (SELECT permissions."id" FROM permissions WHERE
+            permissions."name" = 'REPORTS_UPLOAD');
+            DELETE FROM permissions WHERE permissions."name" = 'REPORTS_UPLOAD';
+
+            DELETE FROM roles_permissions WHERE permission_id = (SELECT permissions."id" FROM permissions WHERE
+            permissions."name" = 'REPORTS_TRANSACTIONS_STATUSES_REPORT');
+            DELETE FROM permissions WHERE permissions."name" = 'REPORTS_TRANSACTIONS_STATUSES_REPORT';
+
+            DELETE FROM roles_permissions WHERE permission_id = (SELECT permissions."id" FROM permissions WHERE
+            permissions."name" = 'REPORTS_CARD_ACCOUNT_STATEMENT_REPORT');
+            DELETE FROM permissions WHERE permissions."name" = 'REPORTS_CARD_ACCOUNT_STATEMENT_REPORT';
+
+            DELETE FROM roles_permissions WHERE permission_id = (SELECT permissions."id" FROM permissions WHERE
+            permissions."name" = 'REPORTS_ACCOUNT_STATEMENT');
+            DELETE FROM permissions WHERE permissions."name" = 'REPORTS_ACCOUNT_STATEMENT';
+
+            DELETE FROM roles_permissions WHERE permission_id = (SELECT permissions."id" FROM permissions WHERE
+            permissions."name" = 'INSTANT_PAYMENTS_ACCOUNT_STATEMENT');
+            DELETE FROM permissions WHERE permissions."name" = 'INSTANT_PAYMENTS_ACCOUNT_STATEMENT';
+
+            DELETE FROM roles_permissions WHERE permission_id = (SELECT permissions."id" FROM permissions WHERE
+            permissions."name" = 'MANAGE_ROLE');
+            DELETE FROM permissions WHERE permissions."name" = 'MANAGE_ROLE';
+
+            DELETE FROM roles_permissions WHERE permission_id = (SELECT permissions."id" FROM permissions WHERE
+            permissions."name" = 'SUPERVISOR');
+            DELETE FROM permissions WHERE permissions."name" = 'SUPERVISOR';
+
+            DELETE FROM roles_permissions WHERE permission_id = (SELECT permissions."id" FROM permissions WHERE
+            permissions."name" = 'PROJECTS_LIST');
+            DELETE FROM permissions WHERE permissions."name" = 'PROJECTS_LIST';
+
+            DELETE FROM roles_permissions WHERE permission_id = (SELECT permissions."id" FROM permissions WHERE
+            permissions."name" = 'CARDS_TRANSACTIONS_LIST');
+            DELETE FROM permissions WHERE permissions."name" = 'CARDS_TRANSACTIONS_LIST';
+
+            DELETE FROM roles_permissions WHERE permission_id = (SELECT permissions."id" FROM permissions WHERE
+            permissions."name" = 'CARDS_REPORTS_DELETE');
+            DELETE FROM permissions WHERE permissions."name" = 'CARDS_REPORTS_DELETE';
+
+            DELETE FROM roles_permissions WHERE permission_id = (SELECT permissions."id" FROM permissions WHERE
+            permissions."name" = 'CARDS_REPORTS_ACCEPT');
+            DELETE FROM permissions WHERE permissions."name" = 'CARDS_REPORTS_ACCEPT';
+
+            DELETE FROM roles_permissions WHERE permission_id = (SELECT permissions."id" FROM permissions WHERE
+            permissions."name" = 'CARDS_REPORTS_ADD');
+            DELETE FROM permissions WHERE permissions."name" = 'CARDS_REPORTS_ADD';
+
+            DELETE FROM roles_permissions WHERE permission_id = (SELECT permissions."id" FROM permissions WHERE
+            permissions."name" = 'CARDS_REPORTS_LIST');
+            DELETE FROM permissions WHERE permissions."name" = 'CARDS_REPORTS_LIST';
+
+            DELETE FROM roles_permissions WHERE permission_id = (SELECT permissions."id" FROM permissions WHERE
+            permissions."name" = 'CARDS_REPORTS_DOWNLOAD');
+            DELETE FROM permissions WHERE permissions."name" = 'CARDS_REPORTS_DOWNLOAD';
+
+            DELETE FROM roles_permissions WHERE permission_id = (SELECT permissions."id" FROM permissions WHERE
+            permissions."name" = 'CARDS_KPI_REPORT');
+            DELETE FROM permissions WHERE permissions."name" = 'CARDS_KPI_REPORT';
+        </sql>
+    </changeSet>
+</databaseChangeLog>

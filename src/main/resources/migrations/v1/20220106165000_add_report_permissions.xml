@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet id="20220106165000_add_report_permissions" author="dev" failOnError="true">
+        <sql>
+            INSERT INTO permissions(name)
+            VALUES ('REPORTS_GET');
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'ACQUIRE' limit 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+            'REPORTS_GET'
+            );
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'ADMIN' limit 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+            'REPORTS_GET'
+            );
+
+            INSERT INTO permissions(name)
+            VALUES ('REPORTS_CREATE');
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'ACQUIRE' limit 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+            'REPORTS_CREATE'
+            );
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'ADMIN' limit 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+            'REPORTS_CREATE'
+            );
+
+            INSERT INTO permissions(name)
+            VALUES ('REPORTS_CHANGE_STATUS');
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'ACQUIRE' limit 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+            'REPORTS_CHANGE_STATUS'
+            );
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'ADMIN' limit 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+            'REPORTS_CHANGE_STATUS'
+            );
+
+            UPDATE roles
+            SET ui_tab_list = '[
+            {
+            "name": "TRANSACTION_MANAGEMENT",
+            "items": [
+            {
+            "name": "AUTHORIZATIONS"
+            },
+            {
+            "name": "TRANSACTIONS"
+            },
+            {
+            "name": "ADJUSTMENTS"
+            }
+            ]
+            },
+            {
+            "name": "DISPUTE_RESOLUTION",
+            "items": [
+            {
+            "name": "CHARGEBACKS"
+            }
+            ]
+            },
+            {
+            "name": "LOGS",
+            "items": [
+            {
+            "name": "API_LOGS"
+            }
+            ]
+            }
+            ]'
+            where name = 'ACQUIRE';
+
+            UPDATE roles
+            SET ui_tab_list = '[
+            {
+            "name": "TRANSACTION_MANAGEMENT",
+            "items": [
+            {
+            "name": "AUTHORIZATIONS"
+            },
+            {
+            "name": "TRANSACTIONS"
+            },
+            {
+            "name": "ADJUSTMENTS"
+            }
+            ]
+            },
+            {
+            "name": "DISPUTE_RESOLUTION",
+            "items": [
+            {
+            "name": "CHARGEBACKS"
+            }
+            ]
+            },
+            {
+            "name": "REPORTS",
+            "items": [
+            {
+            "name": "INACTIVE_USERS"
+            },
+            {
+            "name": "MERCHANT_FEE_REPORTS"
+            }
+            ]
+            },
+            {
+            "name": "LOGS",
+            "items": [
+            {
+            "name": "API_LOGS"
+            }
+            ]
+            },
+            {
+            "name": "SYSTEM",
+            "items": [
+            {
+            "name": "MERCHANTS"
+            }
+            ]
+            }
+            ]'
+            where name = 'ADMIN';
+        </sql>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet id="add_ca_cases_table" author="dev" failOnError="true">
+        <sql>
+            CREATE TABLE ca_cases (
+                id                      BIGSERIAL       NOT NULL PRIMARY KEY,
+                status                  VARCHAR(20)     NOT NULL,
+                project_id              BIGINT          NOT NULL,
+                admin_id                BIGINT          NULL,
+                level                   INT             NULL,
+                created_time            TIMESTAMP       NOT NULL DEFAULT NOW(),
+                updated_time            TIMESTAMP       NOT NULL DEFAULT NOW()
+            );
+
+            CREATE TRIGGER ca_cases_updated_time_on_change BEFORE UPDATE
+                ON ca_cases FOR EACH ROW EXECUTE PROCEDURE updated_time_on_change();
+
+            ALTER TABLE ca_cases
+                ADD CONSTRAINT ca_cases_admin_id FOREIGN KEY (admin_id) REFERENCES admins(id);
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

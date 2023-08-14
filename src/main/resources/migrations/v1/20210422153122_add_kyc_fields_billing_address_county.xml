@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet id="20210422153122_add_kyc_fields_billing_address_county" author="dev" failOnError="true">
+        <sql>
+            DROP TYPE IF EXISTS kyc_field_name;
+            create type kyc_field_name as enum (
+                'FIRST_NAME',
+                'LAST_NAME',
+                'BIRTH_DATE',
+                'BILLING_ADDRESS_COUNTRY_CODE',
+                'BILLING_ADDRESS_COUNTY',
+                'BILLING_ADDRESS_CITY',
+                'BILLING_ADDRESS_STREET_NAME',
+                'BILLING_ADDRESS_BUILDING_NUMBER',
+                'BILLING_ADDRESS_POSTAL_CODE',
+                'NATIONAL_IDENTITY_NUMBER',
+                'MIDDLE_NAME',
+                'MOTHER_NAME',
+                'GENDER',
+                'BILLING_ADDRESS_SUBURB',
+                'BILLING_ADDRESS_STATE_OR_PROVINCE',
+                'BILLING_ADDRESS_STREET_TYPE',
+                'BILLING_ADDRESS_BUILDING_NAME',
+                'BILLING_ADDRESS_UNIT_NUMBER',
+                'NATIONALITY',
+                'DOCUMENT_DETAILS_SERIES',
+                'DOCUMENT_DETAILS_NUMBER',
+                'DOCUMENT_DETAILS_ISSUE_DATE',
+                'DOCUMENT_DETAILS_EXPIRY_DATE',
+                'DOCUMENT_DETAILS_ISSUING_AUTHORITY',
+                'DOCUMENT_DETAILS_NAME_ON_CARD',
+                'DOCUMENT_DETAILS_PLACE_OF_ISSUE',
+                'DOCUMENT_DETAILS_PLACE_OF_BIRTH',
+                'ADDITIONAL_INFORMATION_DRIVER_LICENCE_SERIAL_NUMBER',
+                'ADDITIONAL_INFORMATION_DRIVER_LICENCE_NUMBER',
+                'ADDITIONAL_INFORMATION_DRIVER_LICENCE_VERSION_NUMBER',
+                'ADDITIONAL_INFORMATION_VOTER_ID'
+            );
+
+        </sql>
+    </changeSet>
+</databaseChangeLog>

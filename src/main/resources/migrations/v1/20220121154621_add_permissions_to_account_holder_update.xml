@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet id="20220121154621_add_permissions_to_account_holder_update" author="dev" failOnError="true">
+        <sql>
+            INSERT INTO permissions(name)
+            VALUES ('ACCOUNT_HOLDERS_UPDATE');
+
+            INSERT INTO roles_permissions(role_id, permission_id)
+            SELECT (SELECT id FROM roles WHERE name = 'ADMIN' limit 1), permissions.id
+            FROM permissions
+            WHERE name IN (
+                'ACCOUNT_HOLDERS_UPDATE'
+                );
+        </sql>
+    </changeSet>
+</databaseChangeLog>
